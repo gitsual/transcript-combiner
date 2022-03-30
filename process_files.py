@@ -103,6 +103,8 @@ def process_files(pixel_6_file, youtube_subtitles_file):
 
     write_file(file_name, correct_word_sequence_string_fixed_3)
 
+    return file_name, correct_word_sequence_string_fixed_3
+
 
 def get_numbered_words_of_files(pixel_6_file, youtube_subtitles_file):
     pixel_6_file_content, youtube_subtitles_file_content = get_files_content(pixel_6_file, youtube_subtitles_file)
