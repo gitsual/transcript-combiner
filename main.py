@@ -1,35 +1,22 @@
 import os
-import tkinter as tk
-from tkinter import filedialog
-from process_files import process_files
-import threading
+import sys
 import time
-
-try:
-    import winsound
-except ImportError:
-    import os
-
-    def playsound(frequency, duration):
-        #apt-get install beep
-        os.system('beep -f %s -l %s' % (frequency,duration))
-else:
-    def playsound(frequency, duration):
-        winsound.Beep(frequency, duration)
-
-
-def finished_sound():
-    playsound(784, 100)
-    playsound(784, 600)
-    playsound(622, 600)
-    playsound(698, 600)
-    playsound(784, 200)
-    playsound(698, 200)
-    playsound(784, 800)
+import subprocess
+import platform
+import shutil
+import urllib.request
+import zipfile
+import json
+import re
+import datetime
+import getpass
+import socket
+import urllib.request
+import urllib.parse
+import urllib.error
 
 
-root = tk.Tk()
-root.withdraw()
+
 
 # Get the directory of the script
 script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -52,7 +39,83 @@ pixel_6_translation_files_full_path = [(file, os.path.join(pixel_6_translation_d
 # Create a list of tuples with the file name and the full path of the file for both folders
 files_in_both_folders_full_path = [(file, os.path.join(youtube_subtitles_dir, file), os.path.join(pixel_6_translation_dir, file)) for file in files_in_both_folders]
 
+def clear_screen():
+    if platform.system() == 'Windows':
+        os.system('cls')
+    else:
+        os.system('clear')
+
+
 # Create the UI
+def print_title():
+    clear_screen()
+    print('Pixel 6 Recorder Update')
+    print('=======================')
+    print()
+
+
+def print_menu():
+    print('1. Combine Versions')
+    print('2. Update')
+    print('3. Exit')
+    print()
+
+
+def get_choice():
+    choice = input('Enter an option: ')
+    return choice
+
+
+def check_updates():
+    print_title()
+    print('Checking for updates...')
+    print()
+    time.sleep(2)
+
+    try:
+        with urllib.request.urlopen('https://api.github.com/repos/pixel6/pixel6-recorder/releases/latest') as url:
+            data = json.loads(url.read().decode())
+            tag_name = data['tag_name']
+            print('Latest version:', tag_name)
+            print()
+            time.sleep(2)
+            print('Checking installed version...')
+            print()
+            time.sleep(2)
+            with open('version.txt', 'r') as f:
+                installed_version = f.read()
+                print('Installed version:', installed_version)
+                print()
+                time.sleep(2)
+                if tag_name != installed_version:
+                    print('Update available!')
+                    print()
+                    time.sleep(2)
+                    print('Current version:', installed_version)
+                    print('New version:', tag_name)
+                    print()
+                    time.sleep(2)
+                    print('Do you want to install the update? (y/n)')
+                    print()
+                    choice = input()
+                    if choice == 'y':
+                        install_updates()
+                    else:
+                        print('Update installation aborted.')
+                        print()
+                        time.sleep(2)
+                        main()
+                else:
+                    print('No updates available.')
+                    print()
+                    time.sleep(2)
+                    main()
+    except urllib.error.URLError as e:
+        print('Error:', e.reason)
+        print()
+        time.sleep(2)
+        main()
+
 window = tk.Tk()
 window.title("Select a file")
 window.geometry("500x500")
