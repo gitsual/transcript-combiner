@@ -137,7 +137,7 @@ def combine_versions(common_files_full_path):
         [1].- File1
         [2].- File2
         [3].- File3
-        [4 - Onwards].- Go Back
+        [4 // Onwards].- Go Back
 
         Enter an option: 1
 
@@ -155,7 +155,7 @@ def combine_versions(common_files_full_path):
         print('\t[' + str(i) + '].- ' + str(file.capitalize().replace('_', ' ')))
         options_dict[i] = file_full_path
         i += 1
-    print('\t[' + str(i) + ' - Onwards].- Go Back')
+    print('\t[' + str(i) + ' // Onwards].- Go Back')
     print('')
     selected_file = get_choice(1)
     print('')

@@ -123,6 +123,21 @@ def clean_file_content(list_of_strings):
 
 
 def clean_files_content(pixel_6_file_content, youtube_subtitles_file_content):
+    """
+        This function takes in two file contents and returns two cleaned file contents.
+        The cleaning process is as follows:
+            1. Remove all punctuation
+            2. Remove all numbers
+            3. Remove all special characters
+            4. Remove all whitespace
+            5. Convert all characters to lowercase
+            6. Remove all words that are not in the English dictionary
+        The function returns two cleaned file contents.
+
+        Example:
+            >>> clean_files_content("Hello, world!", "Hello, world!")
+            ("helloworld", "helloworld")
+    """
     pixel_6_file_content_clean = clean_file_content(pixel_6_file_content)
     youtube_subtitles_file_content_clean = clean_file_content(youtube_subtitles_file_content)
 
@@ -633,7 +648,9 @@ def delete_duplicates(correct_word_sequence, correct_word_sequence_string):
     """
     correct_word_sequence_string_fixed = correct_word_sequence_string
 
+    """
     for word in correct_word_sequence:
+        print('word: ' + str(word))
         word_lower = word.lower()
         case_1 = word_lower.capitalize() + ' ' + word_lower.capitalize()
         case_2 = word_lower.capitalize() + ' ' + word_lower
@@ -685,6 +702,7 @@ def delete_duplicates(correct_word_sequence, correct_word_sequence_string):
 
         if case_12 in correct_word_sequence_string_fixed:
             correct_word_sequence_string_fixed = correct_word_sequence_string_fixed.replace(case_8, ' , ' + word_lower.capitalize())
+    """
 
     correct_word_sequence_string_fixed = correct_word_sequence_string_fixed.replace('  ', ' ')
 
