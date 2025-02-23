@@ -9,146 +9,135 @@
 
 </div>
 
-## 📝 Descripción
+## 📝 Description
 
-Transcript Combiner es una herramienta potente y flexible diseñada para mejorar la calidad de las transcripciones mediante la combinación inteligente de múltiples fuentes. Actualmente soporta:
+Transcript Combiner is a powerful and flexible tool designed to enhance transcription quality by intelligently combining multiple sources. Currently supports:
 
-- Transcripciones de YouTube
-- Transcripciones del Pixel 6 (grabadora de Google)
+- Transcriptions from two input sources
+- Processing and combining related texts
 
-## ✨ Características
+## ✨ Features
 
-- Combinación inteligente de transcripciones
-- Soporte para múltiples formatos de entrada
-- Procesamiento de texto avanzado con spaCy
-- Fácil integración con otros sistemas
-- Salida en múltiples formatos
+- Intelligent transcription combining
+- Support for multiple input formats
+- Advanced text processing with spaCy
+- Seamless integration with other systems
+- Multiple output formats
 
-## 🚀 Inicio Rápido
+## 🚀 Quick Start
 
-### Prerrequisitos
+### Prerequisites
 
-- Python 3.8 o superior
+- Python 3.8 or higher
 - pip
-- Acceso a Internet (para la instalación inicial)
 
-### Instalación
+### Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 ```bash
-git clone https://github.com/tu-usuario/transcript-combiner.git
+git clone https://github.com/your-username/transcript-combiner.git
 cd transcript-combiner
 ```
 
-2. Crea y activa un entorno virtual:
+2. Create and activate a virtual environment:
 ```bash
 python -m venv env
-# En Unix o MacOS:
+# On Unix or MacOS:
 source env/bin/activate
-# En Windows:
+# On Windows:
 env\Scripts\activate
 ```
 
-3. Instala las dependencias:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Instala el modelo de spaCy:
+4. Install the spaCy model:
 ```bash
 python -m spacy download es_core_news_sm
 ```
 
-## 📖 Uso
+## 📖 Usage
 
-1. Coloca tus archivos de entrada en los directorios correspondientes:
+1. Run tests to verify functionality:
+```bash
+pytest tests/
+```
+
+2. Place your input files in the corresponding directory:
 ```
 data/
-├── input/
-│   ├── youtube_subtitles/
-│   └── pixel_6_translation/
+└── input/
+    └── source_1/
+    └── source_2/
 ```
 
-2. Ejecuta el script principal:
+3. Run the main script:
 ```bash
-python -m src.main
+python src/main.py
 ```
 
-3. Encuentra los resultados en el directorio de salida:
-```
-data/output/
-```
-
-## 🏗️ Estructura del Proyecto
+## 🏗️ Project Structure
 
 ```
 transcript-combiner/
 ├── data/
-│   ├── input/
-│   │   ├── youtube_subtitles/
-│   │   └── pixel_6_translation/
-│   └── output/
-├── src/
-│   ├── __init__.py
-│   ├── main.py
-│   ├── process_files.py
-│   ├── config.py
-│   └── utils/
-│       ├── __init__.py
-│       ├── text_utils.py
-│       └── spacy_utils.py
+│   └── input/
+│       └── source_1/
+│       └── source_2/
 ├── tests/
 │   ├── __init__.py
-│   └── test_basic.py
-├── docs/
-├── requirements.txt
-├── setup.py
-└── README.md
+│   ├── test_basic.py
+│   ├── test_transcription.py
+│   ├── input/
+│   └── output/
+└── requirements.txt
 ```
 
 ## 🧪 Tests
 
-Para ejecutar la suite completa de tests:
+To run the complete test suite:
 
 ```bash
 pytest tests/
 ```
 
-Para tests específicos:
+For specific tests:
 
 ```bash
 pytest tests/test_basic.py
 ```
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-¡Las contribuciones son bienvenidas! Sigue estos pasos:
+Contributions are welcome! Follow these steps:
 
-1. Fork el proyecto
-2. Crea tu rama de feature (`git checkout -b feature/AmazingFeature`)
-3. Realiza tus cambios y haz commit (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Por favor, asegúrate de actualizar los tests según corresponda y sigue las guías de contribución del proyecto.
+Please ensure you update tests as appropriate and follow the project's contribution guidelines.
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está distribuido bajo la Licencia MIT. Ver el archivo `LICENSE` para más información.
+This project is distributed under the MIT License. See the `LICENSE` file for more information.
 
-## ✍️ Autores
+## ✍️ Authors
 
-* **Tu Nombre** - *Trabajo Inicial* - [@tu-usuario](https://github.com/tu-usuario)
+* **Gitsual** - *Initial Work* - [@gitsual](https://github.com/gitsual)
 
-Ver también la lista de [contribuidores](https://github.com/tu-usuario/transcript-combiner/contributors) que han participado en este proyecto.
+See also the list of [contributors](https://github.com/gitsual/transcript-combiner/contributors) who have participated in this project.
 
-## 🙏 Agradecimientos
+## 🙏 Acknowledgments
 
-* Agradecimiento especial a todos los contribuidores
-* Inspirado en la necesidad de mejorar la calidad de las transcripciones automáticas
-* Basado en las mejores prácticas de procesamiento de lenguaje natural
+* Special thanks to all contributors
+* Inspired by the need to improve automatic transcription quality
+* Based on natural language processing best practices
 
-## 📞 Soporte
+## 📞 Support
 
-Si encuentras un bug o tienes una sugerencia, por favor abre un issue:
-https://github.com/tu-usuario/transcript-combiner/issues
+If you find a bug or have a suggestion, please open an issue:
+https://github.com/gitsual/transcript-combiner/issues

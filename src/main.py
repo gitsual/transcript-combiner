@@ -67,7 +67,7 @@ def print_title():
     It does not return anything.
     """
     clear_screen()
-    print('Pixel 6 Recorder + Youtube Subtitles')
+    print('Transcript Combiner')
     print('====================================')
     print()
 
