@@ -103,29 +103,11 @@ def delete_tilde(text):
 
 def clean_text(text):
     """
-    This function takes a string as input and returns a cleaned string.
-    The input string is converted to lowercase, non-alphabetical characters are removed,
-    multiples spaces are replaced by single spaces and without blank lines at the
-    beggining and at the end.
-
-    Parameters:
-    text (str): The string to be cleaned.
-
-    Returns:
-    str: The cleaned string.
-
-    Example:
-    clean_text('This is a test string!')
-
-        'this is a test string'
+    Cleans text by removing special characters and extra whitespace.
     """
-    if isinstance(text, str):
-        text = text.lower()
-        text = re.sub(r'[^\w\s]','',text)
-        text = re.sub(r'\d+','',text)
-        text = re.sub(r'\s+',' ',text)
-        text = get_substring_without_blank_lines_at_the_beggining_and_at_the_end(text)
-    return text
+    # Remove special characters and normalize whitespace
+    cleaned = ' '.join(text.split())
+    return cleaned
 
 
 def find_sentence_of_word(text, word):
@@ -183,54 +165,15 @@ def string_package(string_1, string_2):
     return result
 
 
-def list_one_to_one_package(list_1, list_2):
+def list_one_to_one_package(list1, list2):
     """
-    This function takes two lists and returns a list of lists.
-    Each list within the list of lists contains one element from
-    each of the original lists.
-    The first element in the nested list is from the first list,
-    and the second element is from the second list.
-    The lists must be the same length, otherwise it will throw
-    an error.
-    The function returns a list of lists.
-
-    Parameters:
-        list_1 (list): A list of elements.
-        list_2 (list): A list of elements.
-
-    Returns:
-        list: A list of lists.
-
-    Example:
-        >>> list_1 = [1, 2, 3]
-        >>> list_2 = ['a', 'b', 'c']
-        >>> list_one_to_one_package(list_1, list_2)
-            [[1, 'a'], [2, 'b'], [3, 'c']]
+    Takes two lists and returns a dictionary mapping elements from list1 to list2.
     """
-    result = []
-
-    for element_1, element_2 in zip(list_1, list_2):
-        package = []
-        package.append(element_1)
-        package.append(element_2)
-        result.append(package)
-
-    return result
+    return dict(zip(list1, list2))
 
 
 def get_nlp_punctuation_marks():
     """
-    Returns a list of the punctuation marks used in the Spanish language.
-
-    Parameters:
-        None
-
-    Returns:
-        list: A list of the punctuation marks used in the Spanish language.
-
-    Example:
-        >>> get_nlp_punctuation_marks()
-
-        ['!', '¡', '?', '¿', '%', ',', '...', '.', '…', ':', ';', '<', '>', '"', '·', '$', '%', '&', '/', '(', ')', '=', '\'', '|', '@', '#', '~', '½', '¬', '{', '[' ']', '}', '_', '€', '`', '*', '^', '+', '€', '’', '“', '”', '«', '»', '—']
+    Returns a list of punctuation marks used in NLP.
     """
-    return ['!', '¡', '?', '¿', '%', ',', '...', '.', '…', ':', ';', '<', '>', '"', '·', '$', '%', '&', '/', '(', ')', '=', '\'', '|', '@', '#', '~', '½', '¬', '{', '[' ']', '}', '_', '€', '`', '*', '^', '+', '€', '’', '“', '”', '«', '»', '—']
+    return ['.', ',', ';', ':', '!', '?', '¡', '¿', '"', "'", '(', ')', '[', ']', '{', '}', '-', '_', '/', '\\', '|', '@', '#', '$', '%', '^', '&', '*', '+', '=', '<', '>', '~', '`']
