@@ -5,7 +5,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/yourusername/transcript-combiner/issues)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/gitsual/transcript-combiner/issues)
 
 </div>
 
@@ -35,7 +35,7 @@ Transcript Combiner is a powerful and flexible tool designed to enhance transcri
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/transcript-combiner.git
+git clone https://github.com/gitsual/transcript-combiner.git
 cd transcript-combiner
 ```
 
