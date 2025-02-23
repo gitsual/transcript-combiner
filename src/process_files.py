@@ -9,16 +9,16 @@ from src.utils.text_utils import get_nlp_punctuation_marks
 from src.config import OUTPUT_DIR
 
 
-def process_files(pixel_6_file, youtube_subtitles_file, output_dir=None):
+def process_files(source_1_file, source_2_file, output_dir=None):
     """
     Combina dos archivos de transcripción en una transcripción coherente.
     """
-    file_name = str(pixel_6_file).split('/')[-1]
+    file_name = str(source_1_file).split('/')[-1]
     
     # Leer archivos
-    with open(pixel_6_file, 'r') as f:
+    with open(source_1_file, 'r') as f:
         pixel_text = f.read()
-    with open(youtube_subtitles_file, 'r') as f:
+    with open(source_2_file, 'r') as f:
         youtube_text = f.read()
         
     # Combinar transcripciones usando el nuevo procesador
@@ -141,21 +141,21 @@ def read_file_content(file):
     return file_content
 
 
-def get_files_content(pixel_6_file, youtube_subtitles_file):
+def get_files_content(source_1_file, source_2_file):
     """
     This function reads the content of the files and returns the content of the files.
-    :param pixel_6_file: The file containing the Pixel 6 subtitles.
-    :param youtube_subtitles_file: The file containing the YouTube subtitles.
+    :param source_1_file: The file containing the Pixel 6 subtitles.
+    :param source_2_file: The file containing the YouTube subtitles.
     :return: The content of the files.
 
     Example:
-    >>> get_files_content('pixel_6.txt', 'youtube_subtitles.txt')
+    >>> get_files_content('source_1.txt', 'source_2.txt')
         ('Pixel 6. The phone that helps you do more.\n', 'Youtube test.\n')
     """
-    pixel_6_file_content = read_file_content(pixel_6_file)
-    youtube_subtitles_file = read_file_content(youtube_subtitles_file)
+    source_1_file_content = read_file_content(source_1_file)
+    source_2_file = read_file_content(source_2_file)
 
-    return pixel_6_file_content, youtube_subtitles_file
+    return source_1_file_content, source_2_file
 
 
 def clean_file_content(list_of_strings):
@@ -183,7 +183,7 @@ def clean_file_content(list_of_strings):
     return new_list
 
 
-def clean_files_content(pixel_6_file_content, youtube_subtitles_file_content):
+def clean_files_content(source_1_file_content, source_2_file_content):
     """
         This function takes in two file contents and returns two cleaned file contents.
         The cleaning process is as follows:
@@ -199,10 +199,10 @@ def clean_files_content(pixel_6_file_content, youtube_subtitles_file_content):
             >>> clean_files_content("Hello, world!", "Hello, world!")
             ("helloworld", "helloworld")
     """
-    pixel_6_file_content_clean = clean_file_content(pixel_6_file_content)
-    youtube_subtitles_file_content_clean = clean_file_content(youtube_subtitles_file_content)
+    source_1_file_content_clean = clean_file_content(source_1_file_content)
+    source_2_file_content_clean = clean_file_content(source_2_file_content)
 
-    return pixel_6_file_content_clean, youtube_subtitles_file_content_clean
+    return source_1_file_content_clean, source_2_file_content_clean
 
 
 def create_dictionaries(list1, list2):
@@ -249,7 +249,7 @@ def create_dictionaries(list1, list2):
     return dictionary1, dictionary2
 
 
-def get_numbered_words_of_files(pixel_6_file, youtube_subtitles_file):
+def get_numbered_words_of_files(source_1_file, source_2_file):
     """
     This function takes two files as input, one is the Pixel 6 recorder file and
     the other is the YouTube subtitles file.
@@ -263,33 +263,33 @@ def get_numbered_words_of_files(pixel_6_file, youtube_subtitles_file):
 
     Parameters
     ----------------
-    pixel_6_file: str
+    source_1_file: str
         The name of the Pixel 6 file.
-    youtube_subtitles_file: str
+    source_2_file: str
         The name of the YouTube subtitles file.
 
     Returns
     ----------------
-    pixel_6_file_content_clean_dictionary: dict
+    source_1_file_content_clean_dictionary: dict
         The dictionary of the Pixel 6 file.
-    youtube_subtitles_file_content_clean_dictionary: dict
+    source_2_file_content_clean_dictionary: dict
         The dictionary of the YouTube subtitles file.
 
     Examples
     ----------------
-    >>> pixel_6_file_content_clean_dictionary, youtube_subtitles_file_content_clean_dictionary = get_numbered_words_of_files('pixel_6.txt', 'youtube_subtitles.txt')
-    >>> pixel_6_file_content_clean_dictionary
+    >>> source_1_file_content_clean_dictionary, source_2_file_content_clean_dictionary = get_numbered_words_of_files('source_1.txt', 'source_2.txt')
+    >>> source_1_file_content_clean_dictionary
         {'google': 1, 'pixel': 1, '6': 1, 'the': 1, 'phone': 1, 'that': 1, 'helps': 1, 'you': 1, 'get': 1, 'things': 1, 'done': 1, 'fast': 1, 'and': 1, 'keeps': 1, 'you': 1, 'safe': 1, 'with': 1, 'the': 1, 'google': 1, 'assistant': 1, 'built': 1, 'in': 1, 'learn': 1, 'more': 1, 'at': 1, 'google': 1, 'com': 1, 'pixel': 1}
-    >>> youtube_subtitles_file_content_clean_dictionary
+    >>> source_2_file_content_clean_dictionary
         {'hello': 1, 'world': 1, 'this': 1, 'is': 1, 'a': 1, 'test': 1, 'of': 1, 'the': 1, 'youtube': 1, 'subtitles': 1, 'system': 1, 'please': 1, 'ignore': 1, 'this': 1, 'video': 1, 'thank': 1, 'you': 1}
     """
-    pixel_6_file_content, youtube_subtitles_file_content = get_files_content(pixel_6_file, youtube_subtitles_file)
-    pixel_6_file_content_clean, youtube_subtitles_file_content_clean = clean_files_content(pixel_6_file_content,
-                                                                                           youtube_subtitles_file_content)
-    pixel_6_file_content_clean_dictionary, youtube_subtitles_file_content_clean_dictionary = create_dictionaries(
-        pixel_6_file_content_clean,
-        youtube_subtitles_file_content_clean)
-    return pixel_6_file_content_clean_dictionary, youtube_subtitles_file_content_clean_dictionary
+    source_1_file_content, source_2_file_content = get_files_content(source_1_file, source_2_file)
+    source_1_file_content_clean, source_2_file_content_clean = clean_files_content(source_1_file_content,
+                                                                                           source_2_file_content)
+    source_1_file_content_clean_dictionary, source_2_file_content_clean_dictionary = create_dictionaries(
+        source_1_file_content_clean,
+        source_2_file_content_clean)
+    return source_1_file_content_clean_dictionary, source_2_file_content_clean_dictionary
 
 
 def ordered_word_dicts(dict1, dict2):
@@ -651,7 +651,7 @@ def get_word_sequence(master_dict, slave_dict, longest_common_words_path, word_p
     return correct_word_sequence
 
 
-def get_the_correct_word_sequence(master_dict, slave_dict, pixel_6_file_content_dictionary, youtube_subtitles_file_content_dictionary):
+def get_the_correct_word_sequence(master_dict, slave_dict, source_1_file_content_dictionary, source_2_file_content_dictionary):
     """
     This function takes in two dictionaries, one for the pixel 6 file and one for the youtube subtitles file.
     It then finds the longest common-words path between the two dictionaries.
@@ -664,14 +664,14 @@ def get_the_correct_word_sequence(master_dict, slave_dict, pixel_6_file_content_
     Parameters:
     master_dict (dict): The dictionary for the pixel 6 file.
     slave_dict (dict): The dictionary for the youtube subtitles file.
-    pixel_6_file_content_dictionary (dict): The dictionary for the pixel 6 file content.
-    youtube_subtitles_file_content_dictionary (dict): The dictionary for the youtube subtitles file content.
+    source_1_file_content_dictionary (dict): The dictionary for the pixel 6 file content.
+    source_2_file_content_dictionary (dict): The dictionary for the youtube subtitles file content.
 
     Returns:
     correct_word_sequence (list): The correct word sequence.
 
     Example:
-    >>> get_the_correct_word_sequence(master_dict, slave_dict, pixel_6_file_content_dictionary, youtube_subtitles_file_content_dictionary)
+    >>> get_the_correct_word_sequence(master_dict, slave_dict, source_1_file_content_dictionary, source_2_file_content_dictionary)
         ['hello', 'world']
     """
     # get the longest common-words path
@@ -693,7 +693,7 @@ def get_the_correct_word_sequence(master_dict, slave_dict, pixel_6_file_content_
 
     correct_word_sequence = []
 
-    correct_word_sequence = get_word_sequence(pixel_6_file_content_dictionary, youtube_subtitles_file_content_dictionary, longest_common_words_path, word_path)
+    correct_word_sequence = get_word_sequence(source_1_file_content_dictionary, source_2_file_content_dictionary, longest_common_words_path, word_path)
 
     return correct_word_sequence
 

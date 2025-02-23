@@ -16,12 +16,12 @@ def get_files_in_both_folders_full_path():
     Obtiene la lista de archivos que están en ambas carpetas.
     """
     # Usar las rutas definidas en config.py
-    youtube_subtitles_dir = INPUT_DIR / "youtube_subtitles"
-    pixel_6_translation_dir = INPUT_DIR / "pixel_6_translation"
+    source_2_dir = INPUT_DIR / "source_2"
+    source_1_dir = INPUT_DIR / "source_1"
 
     # Asegurarse de que los directorios existan
-    youtube_subtitles_dir.mkdir(parents=True, exist_ok=True)
-    pixel_6_translation_dir.mkdir(parents=True, exist_ok=True)
+    source_2_dir.mkdir(parents=True, exist_ok=True)
+    source_1_dir.mkdir(parents=True, exist_ok=True)
 
     # Obtener archivos excluyendo .gitkeep y otros archivos ocultos
     def get_valid_files(directory):
@@ -29,17 +29,17 @@ def get_files_in_both_folders_full_path():
                 if not f.startswith('.') and f != '.gitkeep']
 
     # Obtener la lista de archivos en ambas carpetas
-    youtube_subtitles_files = get_valid_files(youtube_subtitles_dir)
-    pixel_6_translation_files = get_valid_files(pixel_6_translation_dir)
+    source_2_files = get_valid_files(source_2_dir)
+    source_1_files = get_valid_files(source_1_dir)
 
     # Obtener los archivos que están en ambas carpetas
-    files_in_both_folders = list(set(youtube_subtitles_files) & set(pixel_6_translation_files))
+    files_in_both_folders = list(set(source_2_files) & set(source_1_files))
 
     # Crear lista de tuplas con nombre y rutas completas
     files_in_both_folders_full_path = [
         (file, 
-         youtube_subtitles_dir / file, 
-         pixel_6_translation_dir / file) 
+         source_2_dir / file, 
+         source_1_dir / file) 
         for file in files_in_both_folders
     ]
 
@@ -129,9 +129,9 @@ def combine_versions(common_files_full_path):
     print('')
     if 0 < int(selected_file) < i:
         print('\t\tProcessing...')
-        _, youtube_sub, pixel_6_sub = options_dict[int(selected_file)]
+        _, youtube_sub, source_1_sub = options_dict[int(selected_file)]
         print('')
-        output_file, parsed_content = process_files(pixel_6_sub, youtube_sub)
+        output_file, parsed_content = process_files(source_1_sub, youtube_sub)
         print('\t\tFinished!')
         print('')
         print('\t\t\tOutput: ')
